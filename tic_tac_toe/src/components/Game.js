@@ -26,6 +26,12 @@ export default class Game extends React.Component {
     const current = history[history.length - 1];
     const squares = current.squares;
 
+    const winner = calculateWinner(squares);
+
+    if (winner || squares[i]) {
+      return;
+    }
+
     squares[i] = this.state.xIsNext ? "X" : "0";
     this.setState({
       history: history.concat({
