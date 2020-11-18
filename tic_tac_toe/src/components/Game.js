@@ -45,6 +45,18 @@ export default class Game extends React.Component {
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
+    console.log(this.state.stepNumber);
+    let status;
+    const winner = calculateWinner(current.squares);
+    if (winner) {
+      status = `Winner is ${winner}`;
+    } else {
+      status = `Next Player is ${this.state.xIsNext ? "X" : "0"}`;
+    }
+
+    if (this.state.stepNumber == 9) {
+      status = `Match Draw`;
+    }
     return (
       <div className="game">
         <div className="game-board">
@@ -52,6 +64,10 @@ export default class Game extends React.Component {
             clickAction={(i) => this.handleClick(i)}
             squares={current.squares}
           />
+        </div>
+
+        <div className="game-info">
+          <div>{status}</div>
         </div>
       </div>
     );
