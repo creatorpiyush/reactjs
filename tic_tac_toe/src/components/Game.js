@@ -45,8 +45,9 @@ export default class Game extends React.Component {
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
-    console.log(this.state.stepNumber);
     let status;
+
+    // todo: Check Winner and next Player Status
     const winner = calculateWinner(current.squares);
     if (winner) {
       status = `Winner is ${winner}`;
@@ -54,7 +55,8 @@ export default class Game extends React.Component {
       status = `Next Player is ${this.state.xIsNext ? "X" : "0"}`;
     }
 
-    if (this.state.stepNumber == 9) {
+    // todo: Match Draw Status
+    if (this.state.stepNumber === 9) {
       status = `Match Draw`;
     }
     return (
