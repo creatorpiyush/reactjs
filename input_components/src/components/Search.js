@@ -8,6 +8,7 @@ export default class Search extends React.Component {
   handleUsernameChange = (e) => {
     const value = e.target.value;
 
+    console.log(e);
     this.setState({
       username: value,
     });

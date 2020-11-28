@@ -9,8 +9,8 @@ import Search2 from "./components/Search2";
 function App() {
   return (
     <div className="App">
-      {/* <Search /> */}
-      <Search2 />
+      <Search />
+      {/* <Search2 /> */}
     </div>
   );
 }
