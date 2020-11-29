@@ -1,16 +1,18 @@
 import React from "react";
 
 export default class Search extends React.Component {
-  inputRef = React.createRef();
-
   state = {
     username: "",
   };
 
-  handleClick = () => {
-    const value = this.inputRef.current.value;
+  handleKeyDown = (e) => {
+    const value = e.target.value;
 
-    alert(`The Value of the input field is ${value}`);
+    console.log(e);
+
+    if (e.keyCode === 13) {
+      alert(`The Value of the input field is ${value}`);
+    }
 
     this.setState({
       username: value,
@@ -21,9 +23,8 @@ export default class Search extends React.Component {
     return (
       <div>
         <input
-          ref={this.inputRef}
+          onKeyDown={this.handleKeyDown}
           type="text"
-          name="username"
           placeholder="Enter Username"
         />
       </div>
