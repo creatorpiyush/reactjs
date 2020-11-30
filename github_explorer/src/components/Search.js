@@ -17,14 +17,24 @@ export default class Search extends React.Component {
     const { username } = this.state;
     return (
       <div>
-        <input
-          value={username}
-          onChange={this.handleUsernameChange}
-          type="text"
-          name="username"
-          placeholder="Enter Username"
-        />
-        <button onClick={() => this.props.fetchData(username)}>Search</button>
+        <nav className="navbar navbar-dark bg-dark justify-content-center">
+          <div className="form-inline">
+            <input
+              className="form-control mr-sm-2"
+              value={username}
+              onChange={this.handleUsernameChange}
+              type="text"
+              name="username"
+              placeholder="Enter Username"
+            />
+            <button
+              className="btn btn-success my-3 my-sm-1"
+              onClick={() => this.props.fetchData(username)}
+            >
+              Search
+            </button>
+          </div>
+        </nav>
       </div>
     );
   }

@@ -41,7 +41,7 @@ class App extends React.Component {
     return (
       <div>
         <Search fetchData={this.fetchUserData} />
-        {error && <p>{error}</p>}
+        {error && <p className="badge-danger">{error}</p>}
       </div>
     );
   }
