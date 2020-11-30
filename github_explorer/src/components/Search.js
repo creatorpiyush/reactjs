@@ -24,6 +24,7 @@ export default class Search extends React.Component {
           name="username"
           placeholder="Enter Username"
         />
+        <button onClick={() => this.props.fetchData(username)}>Search</button>
       </div>
     );
   }
