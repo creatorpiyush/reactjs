@@ -7,6 +7,7 @@ import Search2 from "./components/Search2";
 class App extends React.Component {
   state = {
     user: null,
+    error: null,
   };
 
   fetchUserData = async (username) => {
@@ -22,15 +23,25 @@ class App extends React.Component {
           user: data,
         });
       }
+      const error = (await res.json()).message;
+
+      this.setState({
+        error: error,
+      });
     } catch (err) {
       console.log(err);
+      this.setState({
+        error: `There is Some Error`,
+      });
     }
   };
 
   render() {
+    const { error } = this.state;
     return (
       <div>
         <Search fetchData={this.fetchUserData} />
+        {error && <p>{error}</p>}
       </div>
     );
   }
