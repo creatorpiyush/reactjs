@@ -8,40 +8,47 @@ class App extends React.Component {
   state = {
     user: null,
     error: null,
+    loading: false,
   };
 
   fetchUserData = async (username) => {
-    // todo: fetch the Github-api
-    // console.log("hi");
-    try {
-      const res = await fetch(`https://api.github.com/users/${username}`);
-      if (res.ok) {
-        const data = await res.json();
-        console.log(data);
+    this.setState({ loading: true }, async () => {
+      try {
+        const res = await fetch(`https://api.github.com/users/${username}`);
+        if (res.ok) {
+          const data = await res.json();
+          console.log(data);
 
-        return this.setState({
-          user: data,
+          return this.setState({
+            user: data,
+            loading: false,
+          });
+        }
+        const error = (await res.json()).message;
+
+        this.setState({
+          error: error,
+          loading: false,
+        });
+      } catch (err) {
+        console.log(err);
+        this.setState({
+          error: `There is Some Error`,
+          loading: false,
         });
       }
-      const error = (await res.json()).message;
+    });
 
-      this.setState({
-        error: error,
-      });
-    } catch (err) {
-      console.log(err);
-      this.setState({
-        error: `There is Some Error`,
-      });
-    }
+    // todo: fetch the Github-api
   };
 
   render() {
-    const { error } = this.state;
+    const { loading, error } = this.state;
     return (
       <div>
         <Search fetchData={this.fetchUserData} />
         {error && <p className="badge-danger">{error}</p>}
+        {loading && <p className="">Loading...</p>}
       </div>
     );
   }
