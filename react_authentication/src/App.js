@@ -1,9 +1,17 @@
-import "./App.css";
+import Signup from "./components/Signup";
+import { Container } from "react-bootstrap";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hello World</h1>
+    <div>
+      <Container
+        className="d-flex align-items-center justify-content-center"
+        style={{ minHeight: "100vh" }}
+      >
+        <div>
+          <Signup />
+        </div>
+      </Container>
     </div>
   );
 }
